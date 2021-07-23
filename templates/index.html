@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<HTML>
+<HEAD>
+<META CHARSET='utf-8'>
+<link rel="stylesheet" type="text/css"  href="css/test.css">
+<TITLE>
+PS8
+</TITLE>
+
+<!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+</HEAD>
+
+<style type="text/css">
+	body{
+		text-align:center;
+		margin-top: 10%;
+		}
+
+	h1{
+		font-size: 50px;
+	}
+
+	.input-field{
+		width: 50%;
+		padding: 10px 0;
+		margin: 5px 0;
+		border-left: 0;
+		border-top: 0;
+		border-right: 0;
+		border-bottom: 1px solid #999;
+		outline: none;
+		border-radius: 10px;
+		background: #b3c6ff;
+	}
+
+	.submit-btn{
+		font-size: 20px;
+		padding: 10px 30px;
+		cursor: pointer;
+		display: block;
+		margin: auto;
+		background: linear-gradient(to right,#b3c6ff,#4d79ff);
+		border:0;
+		outline: none;
+		border-radius: 30px;
+		width:20%;
+		}
+
+	.input-field,.dropdown{
+		font-size: 20px;
+	}
+
+
+</style>
+
+<BODY>
+	<h1>
+	Facial Recognition
+	</h1>
+
+	<div class="typein">
+	<form id="login" action="http://localhost:5000/test" method="POST" > 
+		<input type="text" name="path" class="input-field" placeholder="Image Path" required>
+		<br>
+	  
+	  <select class="dropdown" name="testcase" >
+	    <option value="blur">Test For Blur Image</option>
+	    <option value="count">Count For Multiple People</option>
+	    <option value="thumnail">Generate a Thumnail From the Image</option>
+	    <option value="area">Percent of Face Area in The Entire Image</option>
+	   	<option value="mouth">Check for any Hinderance in the Face Region</option>
+	    <option value="exp">Check Facial Expression</option>
+	    <option value="car">Check Wether its a Real Face or Cartoon Face</option>
+	    <option value="wat">Check for Watermarks</option>
+	  </select>
+	</div>
+	  <br><br>
+		<button type="submit" class="submit-btn">Submit</button>
+    </form>
+
+    
+    <h1> {{result}} </h1>
+    
+
+
+    <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</BODY>
+
+</HTML>

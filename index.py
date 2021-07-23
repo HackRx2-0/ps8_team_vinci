@@ -6,10 +6,10 @@ def checkBlur(image):
 	var = cv2.Laplacian(gray, cv2.CV_64F).var()
 
 	if var>100:
-		return "Blur"
+		return "The Image is Blurred"
 
 	else:
-		return "Not"
+		return "The Image is Not Blurred"
 
 
 
@@ -26,17 +26,18 @@ def countFaces(faces):
 		count+=1
 
 	if count>1:
-		return "more"
+		return "There are more than one people"
 
 	else:
-		return "proceed"
+		return "Only one face (Image Accepted)"
 
 
 
 def cropFace(faces, image):
 	for (x,y,w,h) in faces:
 		roi_color = image[y:y + h, x:x + w]
-		return roi_color
+		cv2.imwrite("Thumnail1.jpg", roi_color)
+		return "Thumnail Created and Saved to Local Directory"
 
 
 def calFaceArea(faces,image):
@@ -53,10 +54,10 @@ def calFaceArea(faces,image):
 	percent = ((imgArea - faceArea) / imgArea) * 100
 
 	if percent < 20:
-		return "areaLessThan20"
+		return "Face area is less than 20 percent (Upload Better Photo)"
 
 	else:
-		return "areaMoreThan20"
+		return "Face area greater than 20 percent (Test Case Passed)"
 
 
 def mouthHindarance(image, faces):
@@ -65,18 +66,23 @@ def mouthHindarance(image, faces):
 	mouth_feature = mouth_cascade.detectMultiScale(gray, 1.5, 5)
 	for (x,y,w,h) in faces:
 		if(len(mouth_feature)==0):
-			return "mouth region is hindered"
+			return "Face Region is Not Shown Completely or Hindered"
 
 		else:
 			for (mx, my, mw, mh) in mouth_feature:
 				if(y < my < y + h):
-					return "proceed"
+					return "Face Region is Clear (Test Case Passed)"
 
 
 
 def faceEmotion(path):
-	label = emotion_detection.emotion(path) 
-	return label
+	label = emotion_detection.emotion(path)
+	if label =="Happy" or label == "Neutral":
+		case = label + "  (Experssion Accepted)"
+		return case
+
+	else:
+		return label + "  (Inappropriate Experssion)"
 
 
 
@@ -87,7 +93,7 @@ def faceEmotion(path):
 
 
 
-path = "blurtestClear.jpg"
+path = "faceWithMask.jpg"
 img = cv2.imread(path, cv2.IMREAD_COLOR)
 
 
@@ -95,17 +101,19 @@ faces = detectFace(img)
 noOfFacetest = countFaces(faces)
 
 
-thumnail = cropFace(faces, img)
+# thumnail = cropFace(faces, img)
 
 regionArea = calFaceArea(faces, img)
+print(regionArea)
 
 mouthArea = mouthHindarance(img, faces)
+print(mouthArea)
 
-emotion = faceEmotion(path)
-print(emotion)
+# emotion = faceEmotion(path)
+# print(emotion)
 
 
-print(noOfFacetest)
+# print(noOfFacetest)
 
-blurTest = checkBlur(img)
-print(blurTest)
+# blurTest = checkBlur(img)
+# print(blurTest)
