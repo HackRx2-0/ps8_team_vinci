@@ -15,5 +15,16 @@ def get_results(img_path):
 
 
 
-result = get_results("cartoonFace.jpg")
-print(result)
+def get_liveliness(img_path):
+    img = cv2.imread(img_path)
+    img = cv2.resize(img, (300, 300))
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    img = img.reshape((-1, 300, 300, 3))
+    classes = ['lively', 'not_lively']
+
+    model = keras.models.load_model("liveliness_detection")
+
+    pred = model.predict(img)
+    pred = int(np.around(pred)[0])
+
+    return classes[pred]

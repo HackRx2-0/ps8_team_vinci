@@ -76,6 +76,19 @@ def test1():
 
 			return render_template("index.html", result = result)
 
+		if tc == "liv":
+			predict = dl_models.get_liveliness(path)
+			ans = predict
+
+			if ans == "lively":
+				result = "The Image is of a Real Person"
+			
+			else:
+				result = "The image is not lively."
+
+			return render_template("index.html", result = result)
+
+
 
 
 
